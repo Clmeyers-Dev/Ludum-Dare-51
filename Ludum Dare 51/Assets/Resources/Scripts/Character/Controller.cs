@@ -45,16 +45,13 @@ namespace Player
      
         private void Update()
         {
-                if(transform.localScale.x ==1&&flip==false){
-                    transform.localScale = new Vector3( -1, 1, 1);
-                    flip = true;
-                }
-                if(transform.localScale.x == -1&&flip==false)
-                {
-                     transform.localScale = new Vector3( 1, 1, 1);
-                     flip = true;
-                }
-            
+           
+               if(Input.X ==1 ){
+                 transform.localScale = new Vector3(1, 1, 1);
+               }
+               if(Input.X== -1){
+                  transform.localScale = new Vector3(-1, 1, 1);
+               }
             
             moveInput = UnityEngine.Input.GetAxisRaw("Horizontal");
             if (Math.Abs(moveInput) > 0&&Grounded)
@@ -97,8 +94,8 @@ namespace Player
         {
             Input = new FrameInput
             {
-                JumpDown = UnityEngine.Input.GetButtonDown("Jump"),
-                JumpHeld = UnityEngine.Input.GetButton("Jump"),
+                JumpDown = UnityEngine.Input.GetButtonUp("Jump"),
+                JumpHeld = UnityEngine.Input.GetButtonUp("Jump"),
                 DashDown = UnityEngine.Input.GetButtonDown("Dash"),
                 X = UnityEngine.Input.GetAxisRaw("Horizontal"),
                 Y = UnityEngine.Input.GetAxisRaw("Vertical")
@@ -134,6 +131,7 @@ namespace Player
         public bool groundedCheck;
         public Transform leftwallPoint;
         public Transform rightwallPoint;
+        public animationManagerWookie animationManager;
         private void RunCollisionChecks()
         {
             // Generate ray ranges. 
@@ -160,6 +158,7 @@ namespace Player
             {
                 _coyoteUsable = true; // Only trigger when first touching
                 audioManager.play("land");
+                animationManager.land();
                 _executedBufferedJump = false;
                 _doubleJumpUsable = true;
                 _canDash = true;
