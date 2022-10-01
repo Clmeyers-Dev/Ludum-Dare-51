@@ -39,7 +39,7 @@ public class BurgerBehavior : MonoBehaviour
     void landed()
     {
         monsterManager.animator.Play("JumpDown_Anim");
-        Debug.Log("landed");
+     
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

@@ -5,7 +5,7 @@ using UnityEngine;
 public class FoodBehavior : MonoBehaviour
 {
     [SerializeField]
-    private float healAmount;
+    private int healAmount;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +19,7 @@ public class FoodBehavior : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.transform.tag =="Player"){
-           other.transform.GetComponent<PlayerManager>().getFood(healAmount);
+           other.transform.GetComponent<PlayerManager>().gainHealth();
            Destroy(this.gameObject);
         }
     }
