@@ -46,7 +46,9 @@ public class BurgerBehavior : MonoBehaviour
         if (other.transform.tag == "Player")
         {
             triggered = true;
+            
         }
+       
     }
     void State()
     {
@@ -82,4 +84,5 @@ public class BurgerBehavior : MonoBehaviour
             }
         }
     }
+     
 }

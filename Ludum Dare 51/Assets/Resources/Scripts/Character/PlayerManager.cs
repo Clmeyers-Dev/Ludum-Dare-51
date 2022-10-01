@@ -5,6 +5,12 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     [SerializeField]
+    private Color flashColor;
+    [SerializeField]
+    private float flashDuration;
+    Material mat;
+    private IEnumerator flashCoroutine;
+    [SerializeField]
     private GameObject[] heartSprites = new GameObject[5];
     [SerializeField]
     private int hearts;
@@ -13,40 +19,82 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private int currentHearts;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        mat = GetComponent<SpriteRenderer>().material;
+    }
     void Start()
     {
+        mat.SetColor("_FlashColor", flashColor);
         currentHearts = maxHearts;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-     public void loseHealth(){
-        for(int i = 0; i < heartSprites.Length;i++){
-            if(heartSprites[i].activeSelf){
+    public void loseHealth()
+    {
+        for (int i = 0; i < heartSprites.Length; i++)
+        {
+            if (heartSprites[i].activeSelf)
+            {
                 heartSprites[i].SetActive(false);
+                flash();
                 return;
             }
         }
     }
-  public void gainHealth(){
-        for(int i = heartSprites.Length-1;i>=0;i--){
-            if(!heartSprites[i].activeSelf){
+    void flash()
+    {
+        if (flashCoroutine != null)
+            StopCoroutine(flashCoroutine);
+
+        flashCoroutine = DoFlash();
+        StartCoroutine(flashCoroutine);
+    }
+    public void gainHealth()
+    {
+        for (int i = heartSprites.Length - 1; i >= 0; i--)
+        {
+            if (!heartSprites[i].activeSelf)
+            {
                 heartSprites[i].SetActive(true);
                 return;
             }
         }
     }
-    public int getNumberOfHealth(){
-        int count=0;
-       for(int i = 0; i < heartSprites.Length;i++){
-           if(heartSprites[i].activeSelf){
-               count++;
-           }
-       }
+    public int getNumberOfHealth()
+    {
+        int count = 0;
+        for (int i = 0; i < heartSprites.Length; i++)
+        {
+            if (heartSprites[i].activeSelf)
+            {
+                count++;
+            }
+        }
 
         return count;
+    }
+      private IEnumerator DoFlash()
+    {
+        float lerpTime = 0;
+
+        while (lerpTime < flashDuration)
+        {
+            lerpTime += Time.deltaTime;
+            float perc = lerpTime / flashDuration;
+
+            SetFlashAmount(1f - perc);
+            yield return null;
+        }
+        SetFlashAmount(0);
+    }
+	
+    private void SetFlashAmount(float flashAmount)
+    {
+        mat.SetFloat("_FlashAmount", flashAmount);
     }
 }
