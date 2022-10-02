@@ -51,6 +51,9 @@ public class MonsterManager : MonoBehaviour
             count++;
         }
     }
+    public float getCurrentHealth(){
+        return currentHealth;
+    }
     void Start()
     {
         if (!burgerKing)
