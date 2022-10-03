@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Player {
+
 	public struct FrameInput {
 		public float X,Y;
 		public bool JumpDown;
@@ -33,4 +33,3 @@ namespace Player {
 
 		public readonly Vector2 Start, End, Dir;
 	}
-}

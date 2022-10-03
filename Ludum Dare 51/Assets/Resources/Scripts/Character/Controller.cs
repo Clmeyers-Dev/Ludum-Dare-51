@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
-namespace Player
-{
+
    
     [RequireComponent(typeof(BoxCollider2D), typeof(Rigidbody2D))]
     public class Controller : MonoBehaviour, IPlayerController
@@ -47,10 +46,10 @@ namespace Player
         {
            
                if(Input.X ==1 ){
-                 transform.localScale = new Vector3(1, 1, 1);
+                 transform.localScale = new Vector3(2, 2, 2);
                }
                if(Input.X== -1){
-                  transform.localScale = new Vector3(-1, 1, 1);
+                  transform.localScale = new Vector3(-2, 2, 2);
                }
             
             moveInput = UnityEngine.Input.GetAxisRaw("Horizontal");
@@ -434,4 +433,3 @@ namespace Player
 
         #endregion
     }
-}

@@ -16,8 +16,8 @@ TagManager:
   - Monster
   - Player
   - MonsterProjectile
-  - 
-  - 
+  - MonsterWall
+  - Camera
   - 
   - 
   - 

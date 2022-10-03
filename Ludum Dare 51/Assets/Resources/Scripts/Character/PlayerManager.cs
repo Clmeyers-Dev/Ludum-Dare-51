@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
+
     [SerializeField]
     private Color flashColor;
     [SerializeField]
@@ -32,6 +35,17 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+    }
+    [SerializeField]
+    private GameObject deathspawn;
+    public void die()
+    {
+        var shot = Instantiate(deathspawn, transform.position, Quaternion.identity);
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+      
+
 
     }
     public void loseHealth()
@@ -78,7 +92,7 @@ public class PlayerManager : MonoBehaviour
 
         return count;
     }
-      private IEnumerator DoFlash()
+    private IEnumerator DoFlash()
     {
         float lerpTime = 0;
 
@@ -92,7 +106,7 @@ public class PlayerManager : MonoBehaviour
         }
         SetFlashAmount(0);
     }
-	
+
     private void SetFlashAmount(float flashAmount)
     {
         mat.SetFloat("_FlashAmount", flashAmount);

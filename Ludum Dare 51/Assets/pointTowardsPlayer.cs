@@ -7,6 +7,7 @@ public class pointTowardsPlayer : MonoBehaviour
     private Transform target;
     [SerializeField]
     private float turnSpeed;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -23,4 +24,5 @@ public class pointTowardsPlayer : MonoBehaviour
      this.transform.rotation = 
          Quaternion.Lerp(this.transform.rotation, rot, Time.deltaTime * turnSpeed); 
     }
+    
 }

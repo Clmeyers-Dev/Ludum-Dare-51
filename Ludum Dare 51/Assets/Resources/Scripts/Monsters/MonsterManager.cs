@@ -51,6 +51,9 @@ public class MonsterManager : MonoBehaviour
             count++;
         }
     }
+    public float getCurrentHealth(){
+        return currentHealth;
+    }
     void Start()
     {
         if (!burgerKing)
@@ -64,10 +67,20 @@ public class MonsterManager : MonoBehaviour
                 mats[i].SetColor("_FlashColor", flashColor);
             }
         }
+        if(GetComponent<Animator>()!=null){
         animator = GetComponent<Animator>();
+        }else{
+            animator = GetComponentInParent<Animator>();
+        }
+        if(!bigPrawntoggle){
         rb = GetComponent<Rigidbody2D>();
+        }else{
+            rb = GetComponentInParent<Rigidbody2D>();
+        }
         currentHealth = maxHealth;
     }
+    public bool bigPrawntoggle;
+    public bool Boss;
 
     // Update is called once per frame
     void Update()
@@ -114,14 +127,27 @@ public class MonsterManager : MonoBehaviour
         dazedTime = startDazedTime;
         currentHealth -= damage;
     }
+    public GameObject bossDrop;
+     
+     public GameObject prawnself;
     public void die()
     {
         if (currentHealth <= 0)
         {
             Instantiate(deathParticles, transform.position, Quaternion.identity);
+            
+            if(Boss){
+            Instantiate(bossDrop,FindObjectOfType<PlayerManager>().gameObject.transform.position+new Vector3(10,0,0),Quaternion.identity);
+            }
+            if(!bigPrawntoggle)
             Destroy(this.gameObject);
+            if(bigPrawntoggle){
+                prawnself = FindObjectOfType<BigPrawn>().gameObject;
+                Destroy(prawnself);
+            }
         }
     }
+   
     void flash()
     {
         if (flashCoroutine != null)
