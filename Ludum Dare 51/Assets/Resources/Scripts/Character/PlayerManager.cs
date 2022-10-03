@@ -30,6 +30,7 @@ public class PlayerManager : MonoBehaviour
     {
         mat.SetColor("_FlashColor", flashColor);
         currentHearts = maxHearts;
+        flash();
     }
 
     // Update is called once per frame

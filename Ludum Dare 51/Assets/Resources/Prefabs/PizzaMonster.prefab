@@ -261,8 +261,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   burgerKing: 0
-  maxHealth: 20
-  currentHealth: 20
+  maxHealth: 10
+  currentHealth: 10
   deathParticles: {fileID: 8006410951681304959, guid: c80ff160d9712d44aac08db2ce854981, type: 3}
   isGrounded: 0
   groundCheck: {fileID: 6820947340612673527}
