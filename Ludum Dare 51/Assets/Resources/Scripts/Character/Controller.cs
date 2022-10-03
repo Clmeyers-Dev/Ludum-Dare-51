@@ -51,6 +51,7 @@ using Random = UnityEngine.Random;
                if(Input.X== -1){
                   transform.localScale = new Vector3(-2, 2, 2);
                }
+               
             
             moveInput = UnityEngine.Input.GetAxisRaw("Horizontal");
             if (Math.Abs(moveInput) > 0&&Grounded)

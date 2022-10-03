@@ -154,7 +154,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.33333334, y: 0.33333334}
+    oldSize: {x: 0.4, y: 0.4}
     newSize: {x: 0.33333334, y: 0.33333334}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -194,7 +194,7 @@ Transform:
   m_GameObject: {fileID: 4135020763320854722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.53, y: 5.51, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4135020762983306540}
@@ -272,7 +272,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.8333333, y: 4}
+    oldSize: {x: 4.6, y: 4.8}
     newSize: {x: 5.75, y: 6}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -315,8 +315,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   burgerKing: 0
-  maxHealth: 20
-  currentHealth: 20
+  maxHealth: 10
+  currentHealth: 10
   deathParticles: {fileID: 8006410951681304959, guid: c80ff160d9712d44aac08db2ce854981, type: 3}
   isGrounded: 0
   groundCheck: {fileID: 4135020762908731215}
@@ -332,6 +332,10 @@ MonoBehaviour:
   flashDuration: 0.5
   mats: []
   sprites: []
+  bigPrawntoggle: 0
+  Boss: 0
+  bossDrop: {fileID: 0}
+  prawnself: {fileID: 0}
 --- !u!95 &4135020763320854726
 Animator:
   serializedVersion: 4

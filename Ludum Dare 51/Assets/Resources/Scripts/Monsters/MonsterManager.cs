@@ -134,6 +134,7 @@ public class MonsterManager : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
+            FindObjectOfType<TenSecondManager>().foodCount++;
             Instantiate(deathParticles, transform.position, Quaternion.identity);
             
             if(Boss){
