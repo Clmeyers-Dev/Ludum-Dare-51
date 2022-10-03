@@ -46,10 +46,10 @@ using Random = UnityEngine.Random;
         {
            
                if(Input.X ==1 ){
-                 transform.localScale = new Vector3(1, 1, 1);
+                 transform.localScale = new Vector3(2, 2, 2);
                }
                if(Input.X== -1){
-                  transform.localScale = new Vector3(-1, 1, 1);
+                  transform.localScale = new Vector3(-2, 2, 2);
                }
             
             moveInput = UnityEngine.Input.GetAxisRaw("Horizontal");

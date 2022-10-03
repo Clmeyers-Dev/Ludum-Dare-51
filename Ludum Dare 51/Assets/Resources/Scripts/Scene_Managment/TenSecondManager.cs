@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Cinemachine;
 public class TenSecondManager : MonoBehaviour
 {
+    public GameObject fog;
+
+    public GameObject BossCamera;
+    public GameObject normalCamera;
     public TextMeshProUGUI stateText;
+
     public string[] states = new string[10];
     public string state;
     public bool paused;
@@ -12,6 +18,7 @@ public class TenSecondManager : MonoBehaviour
     public Vector3 returnLocation;
     public Transform BossRoomSpawn;
     public Transform PrawnRamSpan;
+
     public Transform player;
     public int foodCount;
     public int BurgerCount;
@@ -23,19 +30,27 @@ public class TenSecondManager : MonoBehaviour
         if (!paused)
         {
             animator.Play("Spin");
+            normalCamera.SetActive(true);
+            BossCamera.SetActive(false);
+          
         }
         else
         {
             animator.Play("Idle");
+            normalCamera.SetActive(false);
+            BossCamera.SetActive(true);
         }
         stateText.text = state;
 
 
     }
-
+    public GameObject prawnBackground;
+    public GameObject burgerBackground;
+    public GameObject pizzaBackground;
     public void unPause()
     {
         player.transform.position = returnLocation;
+        
         paused = false;
     }
     void changeState()
@@ -62,30 +77,45 @@ public class TenSecondManager : MonoBehaviour
         }
         else if (random > 30 && random <= 70)
         {
-             paused = true;
+            paused = true;
             state = states[3];
         }
         else if (random > 70 && random <= 100)
         {
-             paused = true;
+            paused = true;
             state = states[4];
         }
         if (state == "Big Prawn")
         {
+            prawnBackground.SetActive(true);
+            burgerBackground.SetActive(false);
+            pizzaBackground.SetActive(false);
             returnLocation = player.transform.position;
             player.transform.position = PrawnRamSpan.transform.position;
+            
+          
             bossSpawner.spawnPrawn();
         }
         if (state == "Burger King")
         {
+            prawnBackground.SetActive(false);
+            burgerBackground.SetActive(true);
+            pizzaBackground.SetActive(false);
             returnLocation = player.transform.position;
             player.transform.position = BossRoomSpawn.transform.position;
+            
+           
             bossSpawner.spawnBurger();
         }
         if (state == "Pinwheel Pizza")
         {
+            prawnBackground.SetActive(false);
+            burgerBackground.SetActive(false);
+            pizzaBackground.SetActive(true);
             returnLocation = player.transform.position;
             player.transform.position = BossRoomSpawn.transform.position;
+            
+           
             bossSpawner.spawnPizza();
         }
         if (state == "Fleas")
