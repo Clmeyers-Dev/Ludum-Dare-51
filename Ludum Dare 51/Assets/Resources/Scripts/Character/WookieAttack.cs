@@ -29,6 +29,8 @@ public class WookieAttack : MonoBehaviour
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 animator.Play("chomp");
+                Controller controller = FindObjectOfType<Controller>();
+                controller.audioManager.play("Chomp");
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, AttackRange, mask);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {

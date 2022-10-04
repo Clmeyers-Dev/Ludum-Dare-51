@@ -30,6 +30,7 @@ public class PlayerManager : MonoBehaviour
     {
         mat.SetColor("_FlashColor", flashColor);
         currentHearts = maxHearts;
+        flash();
     }
 
     // Update is called once per frame
@@ -44,7 +45,8 @@ public class PlayerManager : MonoBehaviour
         var shot = Instantiate(deathspawn, transform.position, Quaternion.identity);
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
-      
+        TenSecondManager ten = FindObjectOfType<TenSecondManager>();
+        ten.endScreen();
 
 
     }

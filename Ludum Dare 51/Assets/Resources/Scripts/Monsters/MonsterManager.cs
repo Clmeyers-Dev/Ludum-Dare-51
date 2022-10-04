@@ -78,6 +78,7 @@ public class MonsterManager : MonoBehaviour
             rb = GetComponentInParent<Rigidbody2D>();
         }
         currentHealth = maxHealth;
+        flash();
     }
     public bool bigPrawntoggle;
     public bool Boss;
@@ -134,6 +135,7 @@ public class MonsterManager : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
+            FindObjectOfType<TenSecondManager>().foodCount++;
             Instantiate(deathParticles, transform.position, Quaternion.identity);
             
             if(Boss){

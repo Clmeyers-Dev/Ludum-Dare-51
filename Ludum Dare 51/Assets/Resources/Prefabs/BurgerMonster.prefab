@@ -73,6 +73,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxBtwHits: 1
   canHit: 1
+  knockBack: 0
+  x: 0
+  y: 0
 --- !u!1 &277232263870109862
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,8 +231,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   burgerKing: 0
-  maxHealth: 20
-  currentHealth: 50
+  maxHealth: 10
+  currentHealth: 10
   deathParticles: {fileID: 8006410951681304959, guid: c80ff160d9712d44aac08db2ce854981, type: 3}
   isGrounded: 0
   groundCheck: {fileID: 277232263870109865}
@@ -245,6 +248,10 @@ MonoBehaviour:
   flashDuration: 1
   mats: []
   sprites: []
+  bigPrawntoggle: 0
+  Boss: 0
+  bossDrop: {fileID: 0}
+  prawnself: {fileID: 0}
 --- !u!114 &277232263922104809
 MonoBehaviour:
   m_ObjectHideFlags: 0

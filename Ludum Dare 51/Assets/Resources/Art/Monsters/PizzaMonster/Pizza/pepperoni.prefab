@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  speed: 20
+  speed: 10
   impactParticles: {fileID: 896795555191069567, guid: e9bba10c388931447a3fcc7704e1c161, type: 3}
 --- !u!58 &8485148054466190632
 CircleCollider2D:
