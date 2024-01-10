@@ -92,21 +92,25 @@ using Random = UnityEngine.Random;
 
         private void GatherInput()
         {
-            Input = new FrameInput
-            {
-                JumpDown = UnityEngine.Input.GetButtonUp("Jump"),
-                JumpHeld = UnityEngine.Input.GetButtonUp("Jump"),
-                DashDown = UnityEngine.Input.GetButtonDown("Dash"),
-                X = UnityEngine.Input.GetAxisRaw("Horizontal"),
-                Y = UnityEngine.Input.GetAxisRaw("Vertical")
-            };
+        private void GatherInput()
+{
+    Input = new FrameInput
+    {
+        JumpDown = UnityEngine.Input.GetButtonDown("Jump"),
+        JumpHeld = UnityEngine.Input.GetButton("Jump"),
+        DashDown = UnityEngine.Input.GetButtonDown("Dash"),
+        X = UnityEngine.Input.GetAxisRaw("Horizontal"),
+        Y = UnityEngine.Input.GetAxisRaw("Vertical")
+    };
 
-            if (Input.DashDown) _dashToConsume = true;
-            if (Input.JumpDown)
-            {
-                _lastJumpPressed = _fixedFrame;
-                _jumpToConsume = true;
-            }
+    if (Input.DashDown) _dashToConsume = true;
+    if (Input.JumpDown)
+    {
+        _lastJumpPressed = _fixedFrame;
+        _jumpToConsume = true;
+    }
+}
+
         }
 
         #endregion
