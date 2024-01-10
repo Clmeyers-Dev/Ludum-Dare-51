@@ -1,68 +1,55 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
-
-    [SerializeField]
-    private Color flashColor;
-    [SerializeField]
-    private float flashDuration;
-    Material mat;
+    [SerializeField] private Color flashColor;
+    [SerializeField] private float flashDuration;
+    private Material mat;
     private IEnumerator flashCoroutine;
-    [SerializeField]
-    private GameObject[] heartSprites = new GameObject[5];
-    [SerializeField]
-    private int hearts;
-    [SerializeField]
-    private int maxHearts;
-    [SerializeField]
+    
+    [SerializeField] private GameObject[] heartSprites = new GameObject[5];
+    [SerializeField] private int maxHearts;
     private int currentHearts;
-    // Start is called before the first frame update
+
+    [SerializeField] private GameObject deathspawn;
+
     private void Awake()
     {
         mat = GetComponent<SpriteRenderer>().material;
     }
+
     void Start()
     {
         mat.SetColor("_FlashColor", flashColor);
         currentHearts = maxHearts;
-        flash();
+        Flash();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
-    [SerializeField]
-    private GameObject deathspawn;
-    public void die()
+    public void Die()
     {
-        var shot = Instantiate(deathspawn, transform.position, Quaternion.identity);
+        Instantiate(deathspawn, transform.position, Quaternion.identity);
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
         TenSecondManager ten = FindObjectOfType<TenSecondManager>();
-        ten.endScreen();
-
-
+        ten.EndScreen();
     }
-    public void loseHealth()
+
+    public void LoseHealth()
     {
         for (int i = 0; i < heartSprites.Length; i++)
         {
             if (heartSprites[i].activeSelf)
             {
                 heartSprites[i].SetActive(false);
-                flash();
+                Flash();
                 return;
             }
         }
     }
-    void flash()
+
+    void Flash()
     {
         if (flashCoroutine != null)
             StopCoroutine(flashCoroutine);
@@ -70,7 +57,8 @@ public class PlayerManager : MonoBehaviour
         flashCoroutine = DoFlash();
         StartCoroutine(flashCoroutine);
     }
-    public void gainHealth()
+
+    public void GainHealth()
     {
         for (int i = heartSprites.Length - 1; i >= 0; i--)
         {
@@ -81,7 +69,8 @@ public class PlayerManager : MonoBehaviour
             }
         }
     }
-    public int getNumberOfHealth()
+
+    public int GetNumberOfHealth()
     {
         int count = 0;
         for (int i = 0; i < heartSprites.Length; i++)
@@ -91,9 +80,9 @@ public class PlayerManager : MonoBehaviour
                 count++;
             }
         }
-
         return count;
     }
+
     private IEnumerator DoFlash()
     {
         float lerpTime = 0;
