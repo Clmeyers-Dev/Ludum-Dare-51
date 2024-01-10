@@ -2,54 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class animationManagerWookie : MonoBehaviour
+public class AnimationManagerWookie : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public Animator animator;
-    public Controller controller;
-    public Rigidbody2D rb;
-    public PlayerManager playerManager;
-    void Start()
-    {
+    [SerializeField] private Animator animator;
+    [SerializeField] private Controller controller;
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private PlayerManager playerManager;
 
-    }
-
-    // Update is called once per frame
     void Update()
     {
-
-        if (controller.Grounded)
+        if (playerManager.getNumberOfHealth() > 0)
         {
-            if (Input.GetKey(KeyCode.Space) && playerManager.getNumberOfHealth() > 0)
+            if (controller.Grounded)
             {
-                animator.Play("Charging");
-                rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+                if (Input.GetKey(KeyCode.Space))
+                {
+                    animator.Play("Charging");
+                    rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+                }
+                else
+                {
+                    rb.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
+                    if (animator.GetBool("walking") && !Input.GetKey(KeyCode.Space))
+                        animator.Play("walking_anim");
+                    else if (!animator.GetBool("walking"))
+                        animator.Play("Idle_anim");
+                }
             }
             else
-                rb.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
+            {
+                animator.Play("jumpingUp");
+            }
         }
-        if (!controller.Grounded && playerManager.getNumberOfHealth() > 0)
-        {
-            animator.Play("jumpingUp");
-        }
-        if (animator.GetBool("walking") && !Input.GetKey(KeyCode.Space) && controller.Grounded && playerManager.getNumberOfHealth() > 0)
-        {
-            animator.Play("walking_anim");
-        }
-        if (!animator.GetBool("walking") && !Input.GetKey(KeyCode.Space) && controller.Grounded && playerManager.getNumberOfHealth() > 0)
-        {
-            animator.Play("Idle_anim");
-        }
-        if (playerManager.getNumberOfHealth() <= 0)
+        else
         {
             PlayerManager player = FindObjectOfType<PlayerManager>();
             player.GetComponent<Controller>().enabled = false;
             animator.Play("death");
         }
     }
-    public void land()
+
+    public void Land()
     {
         animator.Play("landing");
     }
-
 }
