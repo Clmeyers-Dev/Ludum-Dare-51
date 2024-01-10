@@ -13,12 +13,7 @@ public class FoodBehavior : MonoBehaviour
     {
         GetComponentInChildren<SpriteRenderer>().sprite = foodChoices[Random.Range(0,foodChoices.Length)];
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.transform.tag =="Player"){
            other.transform.GetComponent<PlayerManager>().gainHealth();
