@@ -1,52 +1,73 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Audio;
 using System;
+using UnityEngine;
+
 public class AudioManager : MonoBehaviour
 {
-    public sound[] sounds;
-    public static AudioManager instance;
-    // Start is called before the first frame update
+    public Sound[] sounds;
+    public static AudioManager Instance;
+
     void Awake()
     {
-        if(instance == null){
-            instance = this;
-        }else{
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
             Destroy(gameObject);
             return;
         }
+
         DontDestroyOnLoad(gameObject);
-        foreach(sound s in sounds)
+
+        foreach (Sound s in sounds)
         {
-           s.source = gameObject.AddComponent<AudioSource>();
-           s.source.clip = s.clip;
-           s.source.volume = s.volume;
-           s.source.pitch = s.pitch;
-           s.source.loop = s.loop;
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
+            s.source.loop = s.loop;
         }
     }
-    void Start()
+
+    public void Play(string name)
     {
-        
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        Debug.Log("Play " + name);
+        if (s == null)
+        {
+            return;
+        }
+
+        if (!s.source.isPlaying)
+        {
+            s.source.Play();
+        }
     }
 
-    // Update is called once per frame
-    public void play(string name){
-     sound s =   Array.Find(sounds,sound => sound.name == name);
-     Debug.Log("play "+ name);
-     if(s==null){
-         return;
-     }
-     if(!s.source.isPlaying)
-     s.source.Play();
+    public void Stop(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            return;
+        }
+
+        if (s.source.isPlaying)
+        {
+            s.source.Stop();
+        }
     }
-    public void stop(string name){
-         sound s =   Array.Find(sounds,sound => sound.name == name);
-     if(s==null){
-         return;
-     }
-     if(s.source.isPlaying)
-     s.source.Stop();
-    }
+}
+
+[Serializable]
+public class Sound
+{
+    public string name;
+    public AudioClip clip;
+    [Range(0f, 1f)] public float volume;
+    [Range(0.1f, 3f)] public float pitch;
+    public bool loop;
+
+    [HideInInspector] public AudioSource source;
 }
