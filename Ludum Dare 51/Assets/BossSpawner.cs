@@ -1,33 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BossSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public GameObject prawn;
-    public GameObject burger;
-    public GameObject Pizza;
-    public Transform PrawnSpawnLocation;
-    void Start()
-    {
+    [SerializeField]
+    private GameObject prawn;
 
+    [SerializeField]
+    private GameObject burger;
+
+    [SerializeField]
+    private GameObject pizza;
+
+    [SerializeField]
+    private Transform prawnSpawnLocation;
+
+    public void SpawnPrawn()
+    {
+        Instantiate(prawn, prawnSpawnLocation.position, Quaternion.identity);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SpawnPizza()
     {
+        Instantiate(pizza, transform.position, Quaternion.identity);
+    }
 
-    }
-    public void spawnPrawn()
-    {
-        Instantiate(prawn, PrawnSpawnLocation.position, Quaternion.identity);
-    }
-    public void spawnPizza()
-    {
-        Instantiate(Pizza, transform.position, Quaternion.identity);
-    }
-    public void spawnBurger()
+    public void SpawnBurger()
     {
         Instantiate(burger, transform.position, Quaternion.identity);
     }
