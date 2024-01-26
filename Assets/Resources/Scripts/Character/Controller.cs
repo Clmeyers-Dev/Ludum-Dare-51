@@ -61,8 +61,8 @@ using Random = UnityEngine.Random;
             }
             else
             {
-                audioManager.stop("walking");
-                audioManager.stop("walking2");
+                audioManager.Stop("walking");
+                audioManager.Stop("walking2");
                 animator.SetBool("walking", false);
             }
             facingDirection = (int)transform.localScale.x;
@@ -72,6 +72,7 @@ using Random = UnityEngine.Random;
 
             GatherInput();
         }
+    public bool returning = true;
    public AudioManager audioManager;
         void FixedUpdate()
         {
@@ -92,7 +93,7 @@ using Random = UnityEngine.Random;
 
         private void GatherInput()
         {
-        private void GatherInput()
+      
 {
     Input = new FrameInput
     {
@@ -135,7 +136,7 @@ using Random = UnityEngine.Random;
         public bool groundedCheck;
         public Transform leftwallPoint;
         public Transform rightwallPoint;
-        public animationManagerWookie animationManager;
+        public AnimationManagerWookie animationManager;
         private void RunCollisionChecks()
         {
             // Generate ray ranges. 
@@ -161,8 +162,8 @@ using Random = UnityEngine.Random;
             else if (!_grounded && groundedCheck)
             {
                 _coyoteUsable = true; // Only trigger when first touching
-                audioManager.play("land");
-                animationManager.land();
+                audioManager.Play("land");
+                animationManager.Land();
                 _executedBufferedJump = false;
                 _doubleJumpUsable = true;
                 _canDash = true;
@@ -327,7 +328,7 @@ using Random = UnityEngine.Random;
         {
             if (_jumpToConsume && CanDoubleJump)
             {
-                  audioManager.play("jump");
+                  audioManager.Play("jump");
                 _currentVerticalSpeed = _jumpHeight;
                 _doubleJumpUsable = false;
                 _endedJumpEarly = false;
@@ -339,7 +340,7 @@ using Random = UnityEngine.Random;
             // Jump if: grounded or within coyote threshold || sufficient jump buffer
             if ((_jumpToConsume && CanUseCoyote) || HasBufferedJump)
             {
-              audioManager.play("jump");
+              audioManager.Play("jump");
                 _currentVerticalSpeed = _jumpHeight;
                 _endedJumpEarly = false;
                 _coyoteUsable = false;

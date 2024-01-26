@@ -22,7 +22,7 @@ public class BossDrop : MonoBehaviour
         {
             for (int i = 0; i < 4; i++)
             {
-                FindObjectOfType<PlayerManager>().gainHealth();
+                FindObjectOfType<PlayerManager>().GainHealth();
             }
 
             switch (objectName)

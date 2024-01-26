@@ -38,7 +38,7 @@ public class WookieAttack : MonoBehaviour
         Controller controller = FindObjectOfType<Controller>();
         if (controller != null)
         {
-            controller.audioManager.play("Chomp");
+            controller.audioManager.Play("Chomp");
         }
 
         Collider2D[] enemies = new Collider2D[10]; // Adjust the size based on your needs

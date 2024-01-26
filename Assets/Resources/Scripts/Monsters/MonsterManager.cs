@@ -16,6 +16,9 @@ public class MonsterManager : MonoBehaviour
     private Transform groundCheck;
     [SerializeField]
     private LayerMask whatIsGround;
+
+    public bool returning { get; internal set; }
+
     [SerializeField]
     public Animator animator;
     [SerializeField]

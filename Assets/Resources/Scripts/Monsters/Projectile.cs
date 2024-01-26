@@ -35,7 +35,7 @@ public class Projectile : MonoBehaviour
         if (other.tag == "Player" || other.tag =="Ground")
         {
             if( other.GetComponent<PlayerManager>()!=null)
-            other.GetComponent<PlayerManager>().loseHealth();
+            other.GetComponent<PlayerManager>().LoseHealth();
             Instantiate(impactParticles, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }

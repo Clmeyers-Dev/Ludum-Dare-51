@@ -35,7 +35,7 @@ public class harm : MonoBehaviour
         {
             canHit = false;
             PlayerManager pm = other.GetComponent<PlayerManager>();
-            pm.loseHealth();
+            pm.LoseHealth();
             timeBtwHits = 0;
             if (knockBack)
             {

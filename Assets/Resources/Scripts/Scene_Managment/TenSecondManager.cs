@@ -72,7 +72,7 @@ public class TenSecondManager : MonoBehaviour
 
     }
     public GameObject endscreenPanel;
-    public void endScreen()
+    public void EndScreen()
     {
         points += foodCount * 10;
         points += BurgerCount * 50;
@@ -171,7 +171,7 @@ public class TenSecondManager : MonoBehaviour
             player.transform.position = PrawnRamSpan.transform.position;
 
 
-            bossSpawner.spawnPrawn();
+            bossSpawner.SpawnPrawn();
         }
         if (state == "Burger King")
         {
@@ -182,7 +182,7 @@ public class TenSecondManager : MonoBehaviour
             player.transform.position = BossRoomSpawn.transform.position;
 
 
-            bossSpawner.spawnBurger();
+            bossSpawner.SpawnBurger();
         }
         if (state == "Pinwheel Pizza")
         {
@@ -193,7 +193,7 @@ public class TenSecondManager : MonoBehaviour
             player.transform.position = BossRoomSpawn.transform.position;
 
 
-            bossSpawner.spawnPizza();
+            bossSpawner.SpawnPizza();
         }
         if (state == "Pizza Party")
         {

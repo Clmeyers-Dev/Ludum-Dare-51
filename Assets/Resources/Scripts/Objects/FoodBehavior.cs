@@ -16,7 +16,7 @@ public class FoodBehavior : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.transform.tag =="Player"){
-           other.transform.GetComponent<PlayerManager>().gainHealth();
+           other.transform.GetComponent<PlayerManager>().GainHealth();
            FindObjectOfType<TenSecondManager>().foodCount++;
            Destroy(this.gameObject);
         }

@@ -11,7 +11,7 @@ public class AnimationManagerWookie : MonoBehaviour
 
     void Update()
     {
-        if (playerManager.getNumberOfHealth() > 0)
+        if (playerManager.GetNumberOfHealth() > 0)
         {
             if (controller.Grounded)
             {

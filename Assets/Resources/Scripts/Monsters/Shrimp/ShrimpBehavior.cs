@@ -108,7 +108,7 @@ public class ShrimpBehavior : MonoBehaviour
             canHit = false;
             PlayerManager pm = other.GetComponent<PlayerManager>();
 
-            pm.loseHealth();
+            pm.LoseHealth();
             timeBtwHits = 0;
         }
 
